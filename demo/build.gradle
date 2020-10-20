@@ -23,3 +23,8 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+/**
+ * 교재 버전과 맞지 않아 파일의 형태가 다름
+ * dependencies를 제외한 부분은 크게 바뀌지 않음
+ * 간략하게 프로젝트 정보 저장소 정보등이 기록되어 있음
+*/
