@@ -43,11 +43,18 @@ public class DatabaseConfiguration {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();  //스프링-마이바티스의 경우 SqlSessionFactory 생성할때 SqlSessionFactorybean을 사용
         sqlSessionFactoryBean.setDataSource(dataSource);  //위에서 생성한 데이터소스를 설정
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mapper/**/sql-*.xml"));  //마이바티스 맵퍼 파일 설정
+        sqlSessionFactoryBean.setConfigLocation(mybatisConfig());
         return sqlSessionFactoryBean.getObject();
     }
 
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
+    }
+
+    @Bean
+    @ConfigurationProperties(prefix = "mybatis.configuration")
+    public org.apache.ibatis.session.Configuration mybatisConfig(){
+        return new org.apache.ibatis.session.Configuration();
     }
 }
