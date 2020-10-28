@@ -25,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:if="${#lists.size(list)} > 0" th:each="list : $(list)">  <!-- 게시글이 있다면 보여준다 -->
+                <tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">  <!-- 게시글이 있다면 보여준다 -->
                     <td th:text="${list.boardIdx}"></td>  <!-- thymeleaf의 th:each를 사용하여 목록을 표시-->
                     <td class="title" th:text="${list.title}"></td>  <!-- 컨트롤러에서 전달 받은 데이터를 ${변수} 형태로 사용가능 -->
                     <td th:text="${list.hitCnt}"></td>  <!-- 컨트롤러에서 addObject로 전달 해줌 저장한 이름은 list-->
