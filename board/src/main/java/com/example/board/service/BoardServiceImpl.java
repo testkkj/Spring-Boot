@@ -16,7 +16,12 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public List<BoardDto> selectBoardList() throws Exception {
-        // TODO Auto-generated method stub
         return boardMapper.selectBoardList(); // 사용자 요청을 처리하기 위한 비지니스 로직을 구현하는 위치 조회에는 별다른 조작이 필요 없어서 조회 메서드만 호출
     }
+
+    @Override
+    public void insertBoard(BoardDto boardDto) throws Exception {
+        boardMapper.insertBoard(boardDto);
+    }
+
 }

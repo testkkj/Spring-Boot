@@ -16,4 +16,22 @@
                 ORDER BY board_idx DESC
         ]]>
     </select>
+    <insert id="insertBoard" parameterType="com.example.board.dto.BoardDto">  <!-- #{변수명} 형식으로 값을 받을수 있음 파라미터타입은 dto클래스 get변수명(getTitle)으로 값을 받는다. -->
+        <![CDATA[
+            INSERT INTO t_board
+            (
+                title,
+                contents,
+                created_datetime,
+                creator_id
+            )
+            VALUES
+            (
+                #{title},
+                #{contents},
+                NOW(),
+                'admin'
+            )
+        ]]>
+    </insert>
 </mapper>

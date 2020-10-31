@@ -34,6 +34,6 @@ public class BoardController {
     @RequestMapping("/board/insertBoard.do")  //게시글 등록하는 주소 html 폼의 액션과 같은 값
     public String insertBoard(BoardDto boardDto) throws Exception {
         boardService.insertBoard(boardDto);
-        return "redirect://board/openBoardList.do";
+        return "redirect:/board/openBoardList.do";
     }
 }
