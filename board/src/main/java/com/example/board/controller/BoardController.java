@@ -25,4 +25,15 @@ public class BoardController {
 
         return mv;
     }
+
+    @RequestMapping("/board/openBoardWrite.do")  //게시글 작성화면을 호출하는 주소
+    public String openBoardWrite() throws Exception {
+        return "/board/boardWrite";
+    }
+
+    @RequestMapping("/board/insertBoard.do")  //게시글 등록하는 주소 html 폼의 액션과 같은 값
+    public String insertBoard(BoardDto boardDto) throws Exception {
+        boardService.insertBoard(boardDto);
+        return "redirect://board/openBoardList.do";
+    }
 }
