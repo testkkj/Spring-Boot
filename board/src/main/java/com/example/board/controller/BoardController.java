@@ -8,6 +8,7 @@ import com.example.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller  //스프링 MVC의 컨트롤러를 의미 어노테이션을 작성하면 컨트롤러로 작동
@@ -35,5 +36,15 @@ public class BoardController {
     public String insertBoard(BoardDto boardDto) throws Exception {
         boardService.insertBoard(boardDto);
         return "redirect:/board/openBoardList.do";
+    }
+
+    @RequestMapping("/board/openBoardDetail.do")
+    public ModelAndView openBoardDetail(@RequestParam int boardIdx) throws Exception {
+        ModelAndView mv = new ModelAndView("/board/boardDetail");
+
+        BoardDto boardDto = boardService.selectBoardDetail(boardIdx);
+        mv.addObject("board", boardDto);
+
+        return mv;
     }
 }

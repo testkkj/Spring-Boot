@@ -11,4 +11,8 @@ public interface BoardMapper {
     List<BoardDto> selectBoardList() throws Exception;  //인터페이스이기 때문에 메서드 이름과 반환형식만 지정 메서드 이름과 SQL의 이름은 같아야 함
 
     void insertBoard(BoardDto boardDto) throws Exception;
+
+    void updateHitCount(int boardIdx) throws Exception;
+
+    BoardDto selectBoardDetail(int boardIdx) throws Exception;
 }

@@ -34,4 +34,42 @@
             )
         ]]>
     </insert>
+    <update id="updateHitCount" parameterType="int">
+        <![CDATA[
+            UPDATE
+                t_board
+            SET
+                hit_cnt = hit_cnt + 1
+            WHERE
+                board_idx = #{boardIdx}
+        ]]>
+    </update>
+    <select id="selectBoardDetail" parameterType="int" resultType="com.example.board.dto.BoardDto">
+        <![CDATA[
+            SELECT
+                board_idx, title, contents, hit_cnt,
+                DATE_FORMAT(created_datetime, '%Y.%m.%d %H:%i:%s') AS created_datetime,
+                creator_id
+            FROM
+                t_board
+            WHERE
+                board_idx = #{boardIdx} AND deleted_yn = 'N'
+        ]]>
+    </select>
 </mapper>
+<!--
+    MySql 테이블 생성문
+    CREATE TABLE `t_board` (
+  `board_idx` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '글 번호',
+  `title` varchar(300) COLLATE utf8_unicode_ci NOT NULL COMMENT '제목',
+  `contents` text COLLATE utf8_unicode_ci NOT NULL COMMENT '내용',
+  `hit_cnt` smallint(10) NOT NULL DEFAULT '0' COMMENT '조회수',
+  `created_datetime` datetime NOT NULL COMMENT '작성시간',
+  `creator_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '작성자',
+  `updated_datetime` datetime DEFAULT NULL COMMENT '수정시간',
+  `updater_id` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '수정자',
+  `deleted_yn` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'N' COMMENT '삭제여부',
+  PRIMARY KEY (`board_idx`),
+  UNIQUE KEY `board_idx` (`board_idx`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+-->

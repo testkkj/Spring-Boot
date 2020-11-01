@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- thymeleaf 사용을 위한 네임스페이스 설정 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>board</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"></link>
+</head>
+<body>
+    <div class="container">
+        <h2>게시판 상세 화면</h2>
+        <table class="board_detail">  <!-- 테이블 안의 영역에서 사용자에게 입력 받음, 태그의 name으로 서버로 전송됨 -->
+            <tbody>
+                <tr>
+                    <th scope="row">글 번호</th>
+                    <td th:text="${board.boardIdx}"></td>
+                    <th scope="row">조회수</th>
+                    <td th:text="${board.hitCnt}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">작성자</th>
+                    <td th:text="${board.creatorId}"></td>
+                    <th scope="row">작성일</th>
+                    <td th:text="${board.createdDatetime}"></td>
+                </tr>
+            </tbody>
+            <tr>
+                <th scope="row">제목</td>
+                <td colspan="3">
+                    <input type="text" name="title" id="title" th:value="${board.title}">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="view_text">
+                    <textarea title="내용" name="contents" id="contents" cols="30" rows="10" th:text="${board.contents}"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
