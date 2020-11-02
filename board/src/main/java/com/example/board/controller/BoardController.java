@@ -47,4 +47,20 @@ public class BoardController {
 
         return mv;
     }
+
+    @RequestMapping("/board/updateBoard.do")
+    public String updateBoard(BoardDto boardDto) throws Exception {
+
+        boardService.updateBoard(boardDto);
+
+        return "redirect:/board/openBoardList.do";
+    }
+
+    @RequestMapping("/board/deleteBoard.do")
+    public String deleteBoard(int boardIdx) throws Exception {
+
+        boardService.deleteBoard(boardIdx);
+
+        return "redirect:/board/openBoardList.do";
+    }
 }
