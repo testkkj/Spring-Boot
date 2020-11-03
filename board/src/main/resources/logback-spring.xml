@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+    <!-- Appenders -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d %5p [%c] %m%n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="console-infolog" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d %5p %m%n</Pattern>
+        </encoder>
+    </appender>
+
+    <!-- 로거 -->
+    <logger name="board" level="DEBUG" appender-ref="console"/>
+
+    <!-- 루트로거 -->
+    <root level="off">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>
+<!--
+    appenders 파트는 로그 출력을 결정(콘솔, 파일기록, DB저장 등)
+    2개중 위의 것은 디버그용 / 아래것은 info 레벨용
+
+    logger는 level 요소로 로그의 출력 단계를 조절 이 파일은 디버그 레벨로 설정
+    디버그 레벨에서는 appenders 중 위의 패턴을 사용
+
+    로거의 레벨 : trace(전부), debug(개발시 디버그용), info(정보성 메세지 상태변경같은), warn(에러가 될수 있다는 경고), errer(문제가 발생 할 경우)
+-->
