@@ -15,6 +15,8 @@
 
     <!-- 로거 -->
     <logger name="board" level="DEBUG" appender-ref="console"/>
+    <logger name="jdbc.sqlonly" level="INFO" appender-ref="console-infolog"/>
+    <logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog"/>
 
     <!-- 루트로거 -->
     <root level="off">
@@ -29,4 +31,9 @@
     디버그 레벨에서는 appenders 중 위의 패턴을 사용
 
     로거의 레벨 : trace(전부), debug(개발시 디버그용), info(정보성 메세지 상태변경같은), warn(에러가 될수 있다는 경고), errer(문제가 발생 할 경우)
+-->
+<!--
+    디버그 아래 추가된 두개에 대한 주석
+    sqlonly(sql 출력), sqltiming(sql문과 sql실행시간표시), audit(resultset을 제외한 모든 JDBC 호출 정보 출력 데이터가 너무많아 일반적으론 사용하지 않음)
+    resultest(resultset을 포함한 audit), resulttable(sql 조회결과 표시), connection(connection 관련 설정 주로 connection leak 누수에 관한 정보)
 -->

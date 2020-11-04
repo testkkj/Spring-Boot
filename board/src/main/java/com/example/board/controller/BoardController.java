@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
  * 추가로 찾아봐야함
  */
 
- @Slf4j  //lombok사용시 이 어노테이션으로 import1와 로거2를 생성하지 않아도 된다.
+@Slf4j  //lombok사용시 이 어노테이션으로 import1와 로거2를 생성하지 않아도 된다.
 @Controller  //스프링 MVC의 컨트롤러를 의미 어노테이션을 작성하면 컨트롤러로 작동
 public class BoardController {
     //2private Logger log = LoggerFactory.getLogger(this.getClass());  // 파라미터는 로거의 이름 "NAME"일 경우 NAME 로거의 이름 대체로 클래스 이름으로 생성 이경우 패키지이름+클래스이름으로 생성됨
