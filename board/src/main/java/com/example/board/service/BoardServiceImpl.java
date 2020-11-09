@@ -7,8 +7,10 @@ import com.example.board.mapper.BoardMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service // 스프링 MVC 구조에서 서비스를 의미하는 어노테이션
+@Transactional
 public class BoardServiceImpl implements BoardService {
 
     @Autowired
