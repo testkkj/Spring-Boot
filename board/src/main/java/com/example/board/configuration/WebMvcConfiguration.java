@@ -7,6 +7,7 @@ import com.example.board.interceptor.LoggerInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -19,6 +20,15 @@ public class WebMvcConfiguration implements WebMvcConfigurer{  //어떤 클래�
     public void addInterceptors(InterceptorRegistry interceptorRegistry) {
         interceptorRegistry.addInterceptor(new LoggerInterceptor());  //특정 패턴은 지정되지 않은 상태, add/exclude pathpatterns() 로 적용할 패턴 작성 가능
         
+    }
+
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver commonsMultipartResolver =
+        new CommonsMultipartResolver();
+        commonsMultipartResolver.setDefaultEncoding("UTF-8");
+        commonsMultipartResolver.setMaxUploadSizePerFile(5 * 1024 * 1024);
+        return commonsMultipartResolver;
     }
 
     // @Bean
