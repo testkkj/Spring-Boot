@@ -1,7 +1,12 @@
 package com.example.board.configuration;
 
+import java.nio.charset.Charset;
+
 import com.example.board.interceptor.LoggerInterceptor;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -16,4 +21,17 @@ public class WebMvcConfiguration implements WebMvcConfigurer{  //어떤 클래�
         
     }
 
+    // @Bean
+    // public Filter characterEncodingFilter() {
+    //     CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+    //     characterEncodingFilter.setEncoding("UTF-8");
+    //     characterEncodingFilter.setForceEncoding(true);
+
+    //     return characterEncodingFilter;
+    // }
+
+    // @Bean
+    // public HttpMessageConverter<String> responseBodyConverter() {
+    //     return new StringHttpMessageConverter(Charset.forName("UTF-8"));
+    // }
 }
