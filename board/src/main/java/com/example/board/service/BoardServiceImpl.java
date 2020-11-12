@@ -1,5 +1,6 @@
 package com.example.board.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import com.example.board.dto.BoardDto;
@@ -8,9 +9,16 @@ import com.example.board.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import ch.qos.logback.classic.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 @Service // 스프링 MVC 구조에서 서비스를 의미하는 어노테이션
 @Transactional
+@Slf4j
 public class BoardServiceImpl implements BoardService {
 
     @Autowired
@@ -22,8 +30,24 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void insertBoard(BoardDto boardDto) throws Exception {
-        boardMapper.insertBoard(boardDto);
+    public void insertBoard(BoardDto boardDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        //boardMapper.insertBoard(boardDto);
+        if (ObjectUtils.isEmpty(multipartHttpServletRequest) == false) {
+            Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+            String name;
+            while (iterator.hasNext()) {
+                name = iterator.next();
+                log.debug("file tag name : " + name);
+                List<MultipartFile> list = multipartHttpServletRequest.getFiles(name);
+                for (MultipartFile multipartFile : list) {
+                    log.debug("start file information");
+                    log.debug("file name : " + multipartFile.getOriginalFilename());
+                    log.debug("file size : " + multipartFile.getSize());
+                    log.debug("file content type : " + multipartFile.getContentType());
+                    log.debug("end file information. \n");
+                }
+            }
+        }
     }
 
     @Override

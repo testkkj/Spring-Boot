@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h2>게시판 등록</h2>
-        <form id="frm" name="frm" method="POST" action="/board/insertBoard.do">
+        <form id="frm" name="frm" method="POST" action="/board/insertBoard.do" enctype="multipart/form-data">
             <table class="board_detail">  <!-- 테이블 안의 영역에서 사용자에게 입력 받음, 태그의 name으로 서버로 전송됨 -->
                 <tr>
                     <td>제목</td>
@@ -21,6 +21,7 @@
                     </td>
                 </tr>
             </table>
+            <input type="file" name="files" id="files" multiple="multiple">
             <input type="submit" id="submit" value="저장" class="btn">
         </form>
     </div>

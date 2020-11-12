@@ -1,12 +1,8 @@
 package com.example.board.configuration;
 
-import java.nio.charset.Charset;
-
 import com.example.board.interceptor.LoggerInterceptor;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
@@ -47,8 +48,8 @@ public class BoardController {
     }
 
     @RequestMapping("/board/insertBoard.do")  //게시글 등록하는 주소 html 폼의 액션과 같은 값
-    public String insertBoard(BoardDto boardDto) throws Exception {
-        boardService.insertBoard(boardDto);
+    public String insertBoard(BoardDto boardDto, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
+        boardService.insertBoard(boardDto, multipartHttpServletRequest);
         return "redirect:/board/openBoardList.do";
     }
 
