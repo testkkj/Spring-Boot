@@ -17,7 +17,7 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
 @Configuration
 public class TransactionAspect {
     private static final String AOP_TRANSACTION_METHOD_NAME = "*";
-    private static final String AOP_TRANSACTION_EXPRESSION = "execution(* board..service.Impl.*(..))";
+    private static final String AOP_TRANSACTION_EXPRESSION = "execution(* board..service.*Impl.*(..))";
 
     @Autowired
     private PlatformTransactionManager transactionManager;

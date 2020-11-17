@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.ord//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.board.mapper.BoardMapper">  <!-- 매퍼와 xml을 메칭 시키는데 필요한 경로 board.board.mapper.BoardMapper.selectBoardList 중 파일이 위치한 경로를 공통으로 사용 id에서 해당 메소드를 지정한다 -->
-    <select id="selectBoardList" resultType="com.example.board.dto.BoardDto"> <!-- select 쿼리임을 나타내고 id는 매퍼의 메서드 명과 같다 -->
+<mapper namespace="com.example.board.board.mapper.BoardMapper">  <!-- 매퍼와 xml을 메칭 시키는데 필요한 경로 board.board.mapper.BoardMapper.selectBoardList 중 파일이 위치한 경로를 공통으로 사용 id에서 해당 메소드를 지정한다 -->
+    <select id="selectBoardList" resultType="com.example.board.board.dto.BoardDto"> <!-- select 쿼리임을 나타내고 id는 매퍼의 메서드 명과 같다 -->
         <![CDATA[
             SELECT
                 board_idx,
@@ -16,7 +16,7 @@
                 ORDER BY board_idx DESC
         ]]>
     </select>
-    <insert id="insertBoard" parameterType="com.example.board.dto.BoardDto">  <!-- #{변수명} 형식으로 값을 받을수 있음 파라미터타입은 dto클래스 get변수명(getTitle)으로 값을 받는다. -->
+    <insert id="insertBoard" parameterType="com.example.board.board.dto.BoardDto" useGeneratedKeys="true" keyProperty="boardIdx">  <!-- #{변수명} 형식으로 값을 받을수 있음 파라미터타입은 dto클래스 get변수명(getTitle)으로 값을 받는다. -->
         <![CDATA[
             INSERT INTO t_board
             (
@@ -44,7 +44,7 @@
                 board_idx = #{boardIdx}
         ]]>
     </update>
-    <select id="selectBoardDetail" parameterType="int" resultType="com.example.board.dto.BoardDto">
+    <select id="selectBoardDetail" parameterType="int" resultType="com.example.board.board.dto.BoardDto">
         <![CDATA[
             SELECT
                 board_idx, title, contents, hit_cnt,
@@ -56,7 +56,7 @@
                 board_idx = #{boardIdx} AND deleted_yn = 'N'
         ]]>
     </select>
-    <update id="updateBoard" parameterType="com.example.board.dto.BoardDto">
+    <update id="updateBoard" parameterType="com.example.board.board.dto.BoardDto">
         <![CDATA[
             UPDATE t_board SET
                 title = #{title},
@@ -77,6 +77,30 @@
                 board_idx = #{boardIdx}
         ]]>
     </update>
+    <insert id="insertBoardFileList" parameterType="com.example.board.board.dto.BoardDto">
+        <![CDATA[
+            INSERT INTO t_file
+                (
+                    board_idx,
+                    original_file_name,
+                    stored_file_path,
+                    file_size,
+                    creator_id,
+                    created_datetime
+                )
+            VALUES
+        ]]>
+        <foreach collection="list" item="item" separator=",">
+            (
+                #{item.boardIdx},
+                #{item.origianalFileName},
+                #{item.storedFilePath},
+                #{item.fileSize},
+                'admin',
+                NOW()
+            )
+        </foreach>
+    </insert>
 </mapper>
 <!--
     MySql 테이블 생성문

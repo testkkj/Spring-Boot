@@ -3,16 +3,16 @@ package com.example.board.aop;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Aspect
+@Slf4j
 public class LoggerAspects {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Around("execution(* board..controller.*Controller.*(..)) or execution(* board..service.*Impl.*(..)) or execution(* board..dao.*Mapper.*(..))")
+    @Around("execution(* board..controller.*Controller.*(..)) or execution(* board..service.*Impl.*(..)) or execution(* board..mapper.*Mapper.*(..))")
     public Object logPrint(ProceedingJoinPoint joinPoint) throws Throwable {
         String type = "";
         String name = joinPoint.getSignature().getDeclaringTypeName();
@@ -25,7 +25,7 @@ public class LoggerAspects {
             type = "Mapper \t: ";
         }
 
-        logger.debug(type + name + "." + joinPoint.getSignature().getName() + "()");
+        log.debug(type + name + "." + joinPoint.getSignature().getName() + "()");
         return joinPoint.proceed();
     }
 
