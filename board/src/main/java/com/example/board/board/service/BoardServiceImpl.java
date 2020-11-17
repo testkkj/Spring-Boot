@@ -1,10 +1,10 @@
-package com.example.board.service;
+package com.example.board.board.service;
 
 import java.util.Iterator;
 import java.util.List;
 
-import com.example.board.dto.BoardDto;
-import com.example.board.mapper.BoardMapper;
+import com.example.board.board.dto.BoardDto;
+import com.example.board.board.mapper.BoardMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

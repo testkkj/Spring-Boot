@@ -1,8 +1,8 @@
-package com.example.board.service;
+package com.example.board.board.service;
 
 import java.util.List;
 
-import com.example.board.dto.BoardDto;
+import com.example.board.board.dto.BoardDto;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
