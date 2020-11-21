@@ -13,11 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service // 스프링 MVC 구조에서 서비스를 의미하는 어노테이션
 @Transactional
-@Slf4j
 public class BoardServiceImpl implements BoardService {
 
     @Autowired
