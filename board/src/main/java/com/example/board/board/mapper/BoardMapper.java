@@ -6,6 +6,7 @@ import com.example.board.board.dto.BoardDto;
 import com.example.board.board.dto.BoardFileDto;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper  //ibatis 매퍼임을 선언하는 어노테이션
 public interface BoardMapper {
@@ -24,4 +25,6 @@ public interface BoardMapper {
     void insertBoardFileList(List<BoardFileDto> list) throws Exception;
 
     List<BoardFileDto> selectBoardFileList(int boardIdx) throws Exception;
+
+    BoardFileDto selectBoardFileInformation(@Param("idx") int idx, @Param("boardIdx") int boardIdx);
 }
