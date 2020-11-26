@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- thymeleaf 사용을 위한 네임스페이스 설정 -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>board</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"></link>
+</head>
+<body>
+    <div class="container">
+        <h2>게시판 등록</h2>
+        <form id="frm" name="frm" method="POST" action="/board/write" enctype="multipart/form-data">
+            <table class="board_detail">  <!-- 테이블 안의 영역에서 사용자에게 입력 받음, 태그의 name으로 서버로 전송됨 -->
+                <tr>
+                    <td>제목</td>
+                    <td><input type="text" name="title" id="title"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea name="contents" id="contents" cols="30" rows="10"></textarea>
+                    </td>
+                </tr>
+            </table>
+            <input type="file" name="files" id="files" multiple="multiple">
+            <input type="submit" id="submit" value="저장" class="btn">
+        </form>
+    </div>
+</body>
+</html>
